@@ -4,34 +4,6 @@ import axios from "axios";
 import throttle from "lodash.throttle";
 import extractParameters from "./helpers/extractParameters";
 
-class Search extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      searchInput: extractParameters(props.history.location, "search-term")
-    };
-  }
-
-  updateSearchInput = event => {
-    this.setState({ searchInput: event.target.value }, () => {
-      this.props.history.push(
-        `/search/movies?search-term=${this.state.searchInput}`
-      );
-    });
-  };
-
-  render() {
-    return (
-      <div>
-        <input
-          onChange={this.updateSearchInput}
-          value={this.state.searchInput}
-        />
-      </div>
-    );
-  }
-}
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -79,7 +51,6 @@ class App extends Component {
 
     return (
       <div>
-        <Search history={this.props.history} />
         {searchTerm}
         {this.state.results.map(r => (
           <Link key={r.id} to={`/movies/${r.id}`}>
