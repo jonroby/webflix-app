@@ -1,13 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import qs from "query-string";
 import throttle from "lodash.throttle";
-
-const extractParameters = (location, term) => {
-  const parameters = qs.parse(location.search);
-  return parameters && parameters[term];
-};
+import extractParameters from "./helpers/extractParameters";
 
 class Search extends Component {
   constructor(props) {
@@ -41,7 +36,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchResults: []
+      results: [],
+      page: 1
     };
 
     this.throttleFetchSearchResults = throttle(this.fetchSearchResults, 1500);
@@ -61,7 +57,20 @@ class App extends Component {
     );
 
     this.setState({
-      searchResults: response.data.results
+      results: response.data.results
+    });
+  };
+
+  loadMore = async () => {
+    const searchTerm = extractParameters(this.props.location, "search-term");
+    const result = await axios.get(
+      `https://webflix-server.herokuapp.com/search/movies?queryString=${searchTerm}&page=${this
+        .state.page + 1}`
+    );
+
+    this.setState({
+      results: this.state.results.concat(result.data.results),
+      page: this.state.page + 1
     });
   };
 
@@ -72,11 +81,12 @@ class App extends Component {
       <div>
         <Search history={this.props.history} />
         {searchTerm}
-        {this.state.searchResults.map(r => (
+        {this.state.results.map(r => (
           <Link key={r.id} to={`/movies/${r.id}`}>
             {r.title}
           </Link>
         ))}
+        <button onClick={this.loadMore}>Load More</button>
       </div>
     );
   }
