@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import Routes from "./Routes";
 import * as serviceWorker from "./serviceWorker";
 
-import "./index.css";
+import "./index.scss";
 
 ReactDOM.render(<Routes />, document.getElementById("root"));
 

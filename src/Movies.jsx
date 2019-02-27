@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import throttle from "lodash.throttle";
 import axios from "axios";
+import Card from "./Card";
+
+import "./Movies.scss";
 
 class Movies extends Component {
   constructor(props) {
@@ -45,11 +47,12 @@ class Movies extends Component {
   render() {
     return (
       <div>
-        {this.state.results.map(r => (
-          <Link key={r.id} to={`/movies/${r.id}`}>
-            {r.title}
-          </Link>
-        ))}
+        <div className="movies-container">
+          {this.state.results.map(r => (
+            <Card key={r.id} to={`/movies/${r.id}`} data={r} />
+          ))}
+        </div>
+
         <button onClick={() => this.fetchMoreResults(this.props.url)}>
           Load More
         </button>

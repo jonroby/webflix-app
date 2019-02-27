@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Search from "./Search";
 
-import "./Navbar.css";
+import "./Navbar.scss";
 
 class Navbar extends Component {
   render() {
