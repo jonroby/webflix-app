@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import qs from "query-string";
+import throttle from "lodash.throttle";
 
 class Search extends Component {
   state = { searchInput: "" };
@@ -25,6 +26,13 @@ class Search extends Component {
 }
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchResults: []
+    };
+  }
+
   render() {
     const queryParameters = qs.parse(this.props.location.search);
 
