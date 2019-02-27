@@ -1,9 +1,20 @@
 import React, { Component } from "react";
+import axios from "axios";
 import qs from "query-string";
 import throttle from "lodash.throttle";
 
+const extractParameters = (location, term) => {
+  const parameters = qs.parse(location.search);
+  return parameters && parameters[term];
+};
+
 class Search extends Component {
-  state = { searchInput: "" };
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchInput: extractParameters(props.history.location, "search-term")
+    };
+  }
 
   updateSearchInput = event => {
     this.setState({ searchInput: event.target.value }, () => {
@@ -31,15 +42,38 @@ class App extends Component {
     this.state = {
       searchResults: []
     };
+
+    this.throttleFetchSearchResults = throttle(this.fetchSearchResults, 1500);
   }
 
+  componentDidUpdate(prevProps) {
+    const searchTerm = extractParameters(this.props.location, "search-term");
+    const prevSearchTerm = extractParameters(prevProps.location, "search-term");
+    if (searchTerm !== prevSearchTerm) {
+      this.throttleFetchSearchResults(searchTerm);
+    }
+  }
+
+  fetchSearchResults = async searchTerm => {
+    const response = await axios.get(
+      `https://webflix-server.herokuapp.com/search/movies?queryString=${searchTerm}`
+    );
+
+    this.setState({
+      searchResults: response.data.results
+    });
+  };
+
   render() {
-    const queryParameters = qs.parse(this.props.location.search);
+    const searchTerm = extractParameters(this.props.location, "search-term");
 
     return (
       <div>
         <Search history={this.props.history} />
-        {queryParameters["search-term"]}
+        {searchTerm}
+        {this.state.searchResults.map(r => (
+          <div>{r.title}</div>
+        ))}
       </div>
     );
   }
