@@ -19,7 +19,7 @@ class Search extends Component {
 
   render() {
     return (
-      <div>
+      <div className="">
         <input
           onChange={this.updateSearchInput}
           value={this.state.searchInput}
