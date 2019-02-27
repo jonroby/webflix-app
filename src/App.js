@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import qs from "query-string";
 
 class Search extends Component {
   state = { searchInput: "" };
@@ -25,9 +26,12 @@ class Search extends Component {
 
 class App extends Component {
   render() {
+    const queryParameters = qs.parse(this.props.location.search);
+
     return (
       <div>
         <Search history={this.props.history} />
+        {queryParameters["search-term"]}
       </div>
     );
   }
