@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import qs from "query-string";
 import throttle from "lodash.throttle";
@@ -72,7 +73,9 @@ class App extends Component {
         <Search history={this.props.history} />
         {searchTerm}
         {this.state.searchResults.map(r => (
-          <div>{r.title}</div>
+          <Link key={r.id} to={`/movies/${r.id}`}>
+            {r.title}
+          </Link>
         ))}
       </div>
     );

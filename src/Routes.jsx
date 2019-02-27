@@ -9,6 +9,7 @@ class Routes extends Component {
         <React.Fragment>
           <Switch>
             <Route path="/search/movies" component={App} />
+            <Route path="/movies/:id" component={App} />
           </Switch>
         </React.Fragment>
       </BrowserRouter>
