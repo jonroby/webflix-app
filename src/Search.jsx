@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import extractParameters from "./helpers/extractParameters";
+import { FaSearch as SearchIcon } from "react-icons/fa";
+
+import "./Search.scss";
 
 class Search extends Component {
   constructor(props) {
@@ -19,11 +22,17 @@ class Search extends Component {
 
   render() {
     return (
-      <div className="">
-        <input
-          onChange={this.updateSearchInput}
-          value={this.state.searchInput}
-        />
+      <div className="search-container">
+        <div className="search-input-container">
+          <div className="search-icon">
+            <SearchIcon color={"#586069"} />
+          </div>
+          <input
+            className="search-input"
+            onChange={this.updateSearchInput}
+            value={this.state.searchInput}
+          />
+        </div>
       </div>
     );
   }

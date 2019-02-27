@@ -1,8 +1,12 @@
 .navbar-outer {
+  position: fixed;
   padding-left: 20px;
   padding-right: 20px;
   height: 60px;
-  border-bottom: 1px solid #f9f9f9;
+  width: 100%;
+  z-index: 1;
+  background-color: white;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.03);
 }
 
 .navbar-dummy {

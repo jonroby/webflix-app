@@ -1,9 +1,9 @@
 .card {
-    width: 100%;
+  width: 100%;
 }
 
 .card:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .card-image-container {
@@ -22,25 +22,23 @@
 }
 
 .card-details {
-    padding-top: 10px;
-    padding-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .card-details > div {
-    padding-top: 3px;
-    padding-bottom: 3px;
+  padding-top: 3px;
+  padding-bottom: 3px;
 }
 
 .card-details-title {
-    font-size: 16px;
-    font-weight: 500;
-    /* color: #515151; */
-    /* color: $primary-color */
-
+  font-size: 16px;
+  font-weight: 500;
+  /* color: #515151; */
+  /* color: $primary-color */
 }
 
 .card-details-value {
   font-size: 14px;
-    color: #767676;
+  color: #767676;
 }
-
