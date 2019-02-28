@@ -10,7 +10,7 @@ class Movies extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      results: [],
+      results: new Set(),
       page: 0,
       totalPages: 0
     };
@@ -47,7 +47,7 @@ class Movies extends Component {
   fetchInitialResults = async (url, page = 0) => {
     const response = await axios.get(`${url}`);
     this.setState({
-      results: response.data.results,
+      results: new Set(response.data.results),
       page: page + 1,
       totalPages: response.data.total_pages
     });
@@ -64,18 +64,17 @@ class Movies extends Component {
     const nextPage = page + 1;
     const response = await axios.get(`${url}page=${nextPage}`);
     this.setState({
-      results: this.state.results.concat(response.data.results),
+      results: new Set([...this.state.results].concat(response.data.results)),
       page: nextPage,
       totalPages: response.data.total_pages
     });
   };
 
   render() {
-    console.log("this.state ", this.state);
     return (
       <div>
         <div className="movies-container">
-          {this.state.results.map(r => (
+          {[...this.state.results].map(r => (
             <Card key={r.id} data={r} />
           ))}
         </div>
