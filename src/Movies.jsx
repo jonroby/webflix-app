@@ -15,16 +15,16 @@ class Movies extends Component {
       totalPages: 0
     };
 
-    this.throttleFetchInitialResults = throttle(this.fetchInitialResults, 500);
+    this.debounceFetchInitialResults = debounce(this.fetchInitialResults, 500);
     this.myRef = React.createRef();
-    this.fetchMoreListener = null;
+    // this.fetchMoreListener = null;
   }
 
   componentDidMount() {
     this.fetchInitialResults(this.props.url, this.state.page);
-    this.fetchMoreListener = document.addEventListener(
+    window.addEventListener(
       "scroll",
-      debounce((...args) => {
+      throttle(() => {
         this.isScrolledIntoView(this.myRef);
       }, 500)
     );
@@ -32,16 +32,19 @@ class Movies extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.url !== this.props.url) {
-      this.throttleFetchInitialResults(this.props.url, 0);
+      this.setState({ results: [], page: 0, totalPages: 0 }, () => {
+        this.debounceFetchInitialResults(this.props.url, 0);
+        window.scrollTo(0, 0);
+      });
     }
   }
 
   componentWillUnmount() {
-    this.throttleFetchInitialResults = null;
-    this.fetchMoreListener = null;
+    this.debounceFetchInitialResults = null;
+    window.removeEventListener("scroll", this.fetchMoreListener, false);
   }
 
-  fetchInitialResults = async (url, page) => {
+  fetchInitialResults = async (url, page = 0) => {
     const response = await axios.get(`${url}`);
     this.setState({
       results: response.data.results,
@@ -52,8 +55,7 @@ class Movies extends Component {
 
   isScrolledIntoView = el => {
     if (!el || !el.current) return;
-    const threshold = window.innerHeight;
-    if (window.scrollY + threshold > el.current.offsetTop) {
+    if (window.scrollY + window.innerHeight + 500 > el.current.offsetTop) {
       this.fetchMoreResults(this.props.url, this.state.page);
     }
   };
@@ -69,6 +71,7 @@ class Movies extends Component {
   };
 
   render() {
+    console.log("this.state ", this.state);
     return (
       <div>
         <div className="movies-container">
@@ -76,12 +79,12 @@ class Movies extends Component {
             <Card key={r.id} data={r} />
           ))}
         </div>
-
-        {this.state.page <= this.state.totalPages ? (
-          <div className="fetch-more" ref={this.myRef}>
-            FETCH MORE
-          </div>
+        {this.state.page >= this.state.totalPages ? (
+          <div>No More Results</div>
         ) : null}
+        <div className="fetch-more" ref={this.myRef}>
+          FETCH MORE
+        </div>
       </div>
     );
   }
