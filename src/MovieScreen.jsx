@@ -37,25 +37,28 @@ const MovieScreen = props => {
       </div>
 
       <div className="movie-screen-details-container">
-        <div id="movie-screen-details-title">{movie.title}</div>
-        <div id="tagline">
-          <i>{movie.tagline}</i>
-        </div>
+        <div className="movie-screen-details">
+          <div id="movie-screen-details-title">{movie.title}</div>
+          <div id="tagline">
+            <i>{movie.tagline}</i>
+          </div>
 
-        <div className="movie-screen-numerical-data">
-          <div className="vote-average">{movie.vote_average}</div>
-          <div className="release-year">{movie.release_date}</div>
-          <div className="release-year">{movie.runtime}</div>
-        </div>
-        <div className="movie-screen-details-overview">{movie.overview}</div>
-        <div className="list-data">
-          <span className="label">Genres: </span>{" "}
-          {movie.genres && movie.genres.map(l => <div>{l.name}</div>)}
-        </div>
+          <div className="movie-screen-numerical-data">
+            <div className="vote-average">{movie.vote_average}</div>
+            <div className="release-year">{movie.release_date}</div>
+            <div className="release-year">{movie.runtime}</div>
+          </div>
+          <div className="movie-screen-details-overview">{movie.overview}</div>
+          <div className="list-data">
+            <span className="label">Genres: </span>{" "}
+            {movie.genres && movie.genres.map(l => <div>{l.name}</div>)}
+          </div>
 
-        <div className="list-data">
-          <span className="label">Languages: </span>
-          {movie.genres && movie.spoken_languages.map(l => <div>{l.name}</div>)}
+          <div className="list-data">
+            <span className="label">Languages: </span>
+            {movie.genres &&
+              movie.spoken_languages.map(l => <div>{l.name}</div>)}
+          </div>
         </div>
       </div>
     </div>
