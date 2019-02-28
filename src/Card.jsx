@@ -5,15 +5,17 @@ import extractYear from "./helpers/extractYear";
 import "./Card.scss";
 
 const Card = props => {
-  console.log("props ", props);
   return (
     <Link to={`/movies/${props.data.id}`}>
       <div className="card">
         <div className="card-image-container">
           <img
-            src={`https://image.tmdb.org/t/p/w500_and_h282_face/${
-              props.data.poster_path
-            }`}
+            src={
+              props.data.poster_path &&
+              `https://image.tmdb.org/t/p/w500_and_h282_face/${
+                props.data.poster_path
+              }`
+            }
           />
         </div>
         <div className="card-details">
