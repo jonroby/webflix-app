@@ -1,9 +1,11 @@
+@import 'styles/_colors.scss';
+
 .card {
   width: 100%;
 }
 
 .card:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .card-image-container {
@@ -38,7 +40,24 @@
   /* color: $primary-color */
 }
 
-.card-details-value {
+.card-details-data {
+    display: flex;
   font-size: 14px;
   color: #767676;
 }
+
+.card-details-data > div {
+    padding-right: 10px;
+}
+
+.good-movie {
+    color: $webflix-green;
+    font-weight: 700;
+}
+
+.bad-movie {
+    color: $webflix-red;
+    font-weight: 700;
+}
+
+

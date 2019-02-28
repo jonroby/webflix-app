@@ -5,6 +5,7 @@ import extractYear from "./helpers/extractYear";
 import "./Card.scss";
 
 const Card = props => {
+  console.log("props ", props);
   return (
     <Link to={`/movies/${props.data.id}`}>
       <div className="card">
@@ -17,8 +18,17 @@ const Card = props => {
         </div>
         <div className="card-details">
           <div className="card-details-title">{props.data.title}</div>
-          <div className="card-details-value">
-            {extractYear(props.data.release_date)}
+          <div className="card-details-data">
+            <div
+              className={`${
+                props.data.vote_average > 5.5 ? "good-movie" : "bad-movie"
+              }`}
+            >
+              {props.data.vote_average}
+            </div>
+            <div className="card-details-release-date">
+              {extractYear(props.data.release_date)}
+            </div>
           </div>
         </div>
       </div>
