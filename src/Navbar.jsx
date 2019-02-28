@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import Search from "./Search";
 
 import "./Navbar.scss";
@@ -8,7 +9,9 @@ class Navbar extends Component {
     return (
       <div className="navbar-outer">
         <div className="navbar-inner">
-          <div className="navbar-logo">WEBFLIX</div>
+          <Link to={`/`}>
+            <div className="navbar-logo">WEBFLIX</div>
+          </Link>
           <Search history={this.props.history} />
           <div className="navbar-dummy">WEBFLIX</div>
         </div>
