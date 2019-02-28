@@ -69,7 +69,8 @@ const MovieScreen = props => {
       <div className="movies-screen">
         <h3>Related</h3>
         <Movies
-          url={`${rootApiUrl}/movies/related/${id}`}
+          // TODO: VERY BRITTLE ? AT END OF QUERY
+          url={`${rootApiUrl}/movies/related/${id}?`}
           location={props.location}
         />
       </div>

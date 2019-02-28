@@ -15,8 +15,9 @@ class MovieScreen extends Component {
           this.props.location,
           "search-term"
         );
+        // TODO: VERY BRITTLE '&' AT END OF QUERY
         return [
-          `${rootApiUrl}/search/movies?queryString=${searchTerm}`,
+          `${rootApiUrl}/search/movies?queryString=${searchTerm}&`,
           "Search Results"
         ];
       }
