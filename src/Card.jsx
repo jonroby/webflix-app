@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import extractYear from "./helpers/extractYear";
 
 import "./Card.scss";
 
@@ -16,7 +17,9 @@ const Card = props => {
         </div>
         <div className="card-details">
           <div className="card-details-title">{props.data.title}</div>
-          <div className="card-details-value">{props.data.release_date}</div>
+          <div className="card-details-value">
+            {extractYear(props.data.release_date)}
+          </div>
         </div>
       </div>
     </Link>

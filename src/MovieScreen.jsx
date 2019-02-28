@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import qs from "query-string";
 import axios from "axios";
 import Movies from "./Movies";
+import extractYear from "./helpers/extractYear";
+import formatFilmDuration from "./helpers/formatFilmDuration";
 
 import "./MovieScreen.scss";
 
@@ -21,6 +23,7 @@ const MovieScreen = props => {
   };
 
   const id = props.match.params.id;
+  console.log("movie ", movie);
   return (
     <div>
       <div className="movie-screen-container">
@@ -46,8 +49,12 @@ const MovieScreen = props => {
 
             <div className="movie-screen-numerical-data">
               <div className="vote-average">{movie.vote_average}</div>
-              <div className="release-year">{movie.release_date}</div>
-              <div className="release-year">{movie.runtime}</div>
+              <div className="release-year">
+                {extractYear(movie.release_date)}
+              </div>
+              <div className="release-year">
+                {formatFilmDuration(movie.runtime)}
+              </div>
             </div>
             <div className="movie-screen-details-overview">
               {movie.overview}

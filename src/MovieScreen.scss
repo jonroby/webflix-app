@@ -61,7 +61,10 @@
 
 .movie-screen-numerical-data .vote-average {
   color: #46d369;
-  padding-right: 10px;
+}
+
+.movie-screen-numerical-data > div {
+    padding-right: 15px;
 }
 
 .image-container {
@@ -125,3 +128,4 @@
     min-width: 800px;
   }
 }
+
