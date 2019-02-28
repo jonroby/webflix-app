@@ -78,7 +78,9 @@ class Movies extends Component {
         </div>
 
         {this.state.page <= this.state.totalPages ? (
-          <div ref={this.myRef}>L</div>
+          <div className="fetch-more" ref={this.myRef}>
+            FETCH MORE
+          </div>
         ) : null}
       </div>
     );
