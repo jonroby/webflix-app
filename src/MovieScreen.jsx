@@ -11,11 +11,15 @@ import "./MovieScreen.scss";
 const rootApiUrl = "https://webflix-server.herokuapp.com";
 
 const MovieScreen = props => {
+  console.log("params ", props);
   const [movie, setMovie] = useState([]);
 
-  useEffect(() => {
-    fetchMovie(props.match.params.id);
-  }, []);
+  useEffect(
+    () => {
+      fetchMovie(props.match.params.id);
+    },
+    [props.match.params.id]
+  );
 
   const fetchMovie = async id => {
     const result = await axios.get(`${rootApiUrl}/movies/${id}`);
@@ -23,7 +27,6 @@ const MovieScreen = props => {
   };
 
   const id = props.match.params.id;
-  console.log("movie ", movie);
   return (
     <div>
       <div className="movie-screen-container">
