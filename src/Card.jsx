@@ -5,7 +5,7 @@ import "./Card.scss";
 
 const Card = props => {
   return (
-    <Link to={`/movie/${props.data.id}`}>
+    <Link to={`/movies/${props.data.id}`}>
       <div className="card">
         <div className="card-image-container">
           <img

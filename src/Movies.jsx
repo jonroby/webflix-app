@@ -26,6 +26,10 @@ class Movies extends Component {
     }
   }
 
+  componentWillUnmount() {
+    this.throttleFetchInitialResults = null;
+  }
+
   fetchInitialResults = async url => {
     const response = await axios.get(url);
 
@@ -49,7 +53,7 @@ class Movies extends Component {
       <div>
         <div className="movies-container">
           {this.state.results.map(r => (
-            <Card key={r.id} to={`/movies/${r.id}`} data={r} />
+            <Card key={r.id} data={r} />
           ))}
         </div>
 
