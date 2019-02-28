@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Navbar from "./Navbar";
 import MoviesScreen from "./MoviesScreen";
 import MovieScreen from "./MovieScreen";
+import NotFound from "./NotFound";
 
 import "./Routes.scss";
 
@@ -14,9 +15,11 @@ class Routes extends Component {
           <Route path="/" component={Navbar} />
           <div className="routes-container">
             <Switch>
-              <Route path="/search/movies" component={MoviesScreen} />
+              <Route exact path="/" component={MoviesScreen} />
               <Route path="/movies/popular" component={MoviesScreen} />
               <Route path="/movies/:id" component={MovieScreen} />
+              <Route path="/search/movies" component={MoviesScreen} />
+              <Route component={NotFound} />
             </Switch>
           </div>
         </React.Fragment>

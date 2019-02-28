@@ -11,7 +11,6 @@ import "./MovieScreen.scss";
 const rootApiUrl = "https://webflix-server.herokuapp.com";
 
 const MovieScreen = props => {
-  console.log("params ", props);
   const [movie, setMovie] = useState([]);
 
   useEffect(

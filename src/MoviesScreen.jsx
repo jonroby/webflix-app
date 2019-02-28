@@ -24,8 +24,9 @@ class MovieScreen extends Component {
     };
 
     const pathname = this.props.location.pathname;
-    const url = mapping[pathname]()[0];
-    const title = mapping[pathname]()[1];
+    const route = mapping[pathname] || mapping["/movies/popular"];
+    const url = route()[0];
+    const title = route()[1];
 
     return (
       <div className="movies-screen">
