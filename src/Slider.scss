@@ -1,6 +1,5 @@
 .slider-outer {
     position: absolute;
-    transition: left .7s;
     overflow: hidden;
     // width: 1200px;
 }
@@ -9,7 +8,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-
+    padding-left: 60px;
 }
 
 .slider-container > div {
@@ -18,13 +17,38 @@
     transition: width .35s
 }
 
-// .button-left {
-//     position: absolute;
-//     top: 0;
-// }
+.outer-outer {
+    width: 100%;
+    
+    position: absolute;
+    overflow: hidden;
+    width: 1200px;
+    height: 600px;
+    // background-color: red;
+}
 
-// .button-right {
-//     position: absolute;
-//     // top: 0;
-//     right: 0
-// }
+.button-left {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    display: flex;
+    background-color: #fafafa;
+    opacity: .9;
+    width: 60px;
+    height: 205px;
+}
+
+.button-right {
+    position: absolute;
+    height: 100%;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    opacity: .5;
+    width: 60px;
+}
+
+.button-left > button:hover {
+    cursor: pointer;
+}

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Card from "./Card";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 import "./Slider.scss";
 
@@ -48,7 +49,9 @@ class Slider extends Component {
   }
 
   sliderWidth = slider => () => {
-    const sliderWidth = slider.current.offsetWidth;
+    // Check width here
+    const sidesWidth = 120;
+    const sliderWidth = slider.current.offsetWidth - sidesWidth;
     this.setState({ sliderWidth });
   };
 
@@ -74,26 +77,37 @@ class Slider extends Component {
       left -= diff * percentOfMovement;
     }
 
-    const transition = this.state.hoverIdx !== null ? "left .35s" : "left .7s";
+    const transition = this.state.hoverIdx !== null ? "left .35s" : "left .75s";
     return (
-      <div className="slider-outer" style={{ left, transition }}>
-        <div
-          className="slider-container"
-          style={{ height: width * 1.5 * 0.7904114 }}
-        >
-          {this.props.data.map((i, idx) => {
-            return (
-              <div
-                onMouseEnter={this.mouseEnter(idx)}
-                onMouseLeave={this.mouseLeave(idx)}
-                style={{
-                  width: idx === this.state.hoverIdx ? width * 1.5 : width
-                }}
-              >
-                <Card data={i} />
-              </div>
-            );
-          })}
+      <div
+        className="outer-outer"
+        style={{ width: window.innerWidth, height: width * 1.5 * 0.7904114 }}
+      >
+        <div className="slider-outer" style={{ left, transition }}>
+          <div
+            className="slider-container"
+            style={{ height: width * 1.5 * 0.7904114 }}
+          >
+            {this.props.data.map((i, idx) => {
+              return (
+                <div
+                  onMouseEnter={this.mouseEnter(idx)}
+                  onMouseLeave={this.mouseLeave(idx)}
+                  style={{
+                    width: idx === this.state.hoverIdx ? width * 1.5 : width
+                  }}
+                >
+                  <Card data={i} />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <div className="button-left" onClick={() => this.toggle("left")}>
+          <FaChevronLeft />
+        </div>
+        <div className="button-right" onClick={() => this.toggle("right")}>
+          <FaChevronRight />
         </div>
       </div>
     );
@@ -124,17 +138,7 @@ class Slider extends Component {
   };
 
   render() {
-    return (
-      <div ref={this.sliderRef}>
-        <button className="button-left" onClick={() => this.toggle("left")}>
-          left
-        </button>
-        <button className="button-right" onClick={() => this.toggle("right")}>
-          right
-        </button>
-        {this.renderCards()}
-      </div>
-    );
+    return <div ref={this.sliderRef}>{this.renderCards()}</div>;
   }
 }
 
