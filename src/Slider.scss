@@ -1,14 +1,35 @@
 .slider-outer {
     position: absolute;
-    overflow: hidden;
+    // overflow: hidden;
     // width: 1200px;
+    position: flex;
+    flex-directoin: row;
+    justify-content: center;
+}
+
+
+.hold {
+    // height: 100%;
+    // margin-top: 1vw;
+    // margin-bottom: 1vw;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+}
+.slider-title {
+    padding-left: 63px;
+    margin-top: 30px;
 }
 
 .slider-container {
     display: flex;
+    height: 100%;
     flex-direction: row;
     align-items: center;
     padding-left: 60px;
+    // margin-top: 20px;
+    // margin-bottom: 20px;
+
 }
 
 .slider-container > div {
@@ -17,36 +38,39 @@
     transition: width .35s
 }
 
+
+// Keeps anything from overflowing
+// Used for buttons
 .outer-outer {
-    width: 100%;
-    
-    position: absolute;
-    overflow: hidden;
-    width: 1200px;
-    height: 600px;
-    // background-color: red;
+    // width: 100%;
+    // height: 100%;
+    // overflow-x: hidden;    
+    position: relative;
+    width: 1200px;  // Initial?
 }
 
-.button-left {
-    position: absolute;
+.button-left, .button-right {
+        position: absolute;
     height: 100%;
     top: 0;
-    display: flex;
-    background-color: #fafafa;
-    opacity: .9;
+
+    z-index: 2;
+        display: flex;
+    align-items: center;
+    justify-content: center;
+        width: 60px;
+
+    background-color: #fafafa; // #fafafa;
+    opacity: .85;
     width: 60px;
-    height: 205px;
+}
+.button-left {
 }
 
 .button-right {
-    position: absolute;
-    height: 100%;
     right: 0;
-    display: flex;
-    justify-content: center;
-    background-color: black;
-    opacity: .5;
-    width: 60px;
+
+
 }
 
 .button-left > button:hover {

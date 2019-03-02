@@ -1,3 +1,5 @@
+//2650
+
 import React, { Component } from "react";
 import Card from "./Card";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
@@ -29,31 +31,10 @@ class Slider extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sliderWidth: 1,
       currentSlide: 0,
-      numberOfSlides: 0,
       hoverIdx: null
     };
-
-    this.sliderRef = React.createRef();
   }
-
-  componentDidMount() {
-    this.setState({ numberOfSlides: this.props.data.length });
-    this.sliderWidth(this.sliderRef)(); // Initial
-    window.addEventListener("resize", this.sliderWidth(this.sliderRef));
-  }
-
-  componentDidUpdate() {
-    // this.setState({ numberOfSlides: this.props.data.length });
-  }
-
-  sliderWidth = slider => () => {
-    // Check width here
-    const sidesWidth = 120;
-    const sliderWidth = slider.current.offsetWidth - sidesWidth;
-    this.setState({ sliderWidth });
-  };
 
   mouseEnter = idx => event => {
     event.stopPropagation();
@@ -66,13 +47,15 @@ class Slider extends Component {
   };
 
   renderCards() {
-    const numOfSlides = screenWidthToNumberOfSlides(this.state.sliderWidth);
-    let width = this.state.sliderWidth * (1 / numOfSlides);
+    const numOfSlides = screenWidthToNumberOfSlides(this.props.sliderWidth);
+    console.log("numOfSlides ", numOfSlides);
+    let width = this.props.sliderWidth * (1 / numOfSlides);
 
+    const hMultiplier = 1.35;
     let left = -(this.state.currentSlide * width);
     if (this.state.hoverIdx !== null) {
       const modulo = this.state.hoverIdx % numOfSlides;
-      const diff = width * 1.5 - width;
+      const diff = width * 1.35 - width;
       const percentOfMovement = modulo / (numOfSlides - 1);
       left -= diff * percentOfMovement;
     }
@@ -81,26 +64,34 @@ class Slider extends Component {
     return (
       <div
         className="outer-outer"
-        style={{ width: window.innerWidth, height: width * 1.5 * 0.7904114 }}
+        style={{
+          width: window.innerWidth,
+          height: width * 0.8
+        }}
       >
-        <div className="slider-outer" style={{ left, transition }}>
-          <div
-            className="slider-container"
-            style={{ height: width * 1.5 * 0.7904114 }}
-          >
+        <div
+          className="slider-outer"
+          style={{ left, transition, height: width * 0.8 }}
+        >
+          {/* <div className="hold"> */}
+          {/* <div className="slider-title">{this.props.title}</div> */}
+          <div className="slider-container">
             {this.props.data.map((i, idx) => {
               return (
                 <div
                   onMouseEnter={this.mouseEnter(idx)}
                   onMouseLeave={this.mouseLeave(idx)}
                   style={{
-                    width: idx === this.state.hoverIdx ? width * 1.5 : width
+                    width:
+                      idx === this.state.hoverIdx ? width * hMultiplier : width,
+                    zIndex: idx === this.state.hoverIdx ? 1 : 0
                   }}
                 >
                   <Card data={i} />
                 </div>
               );
             })}
+            {/* </div> */}
           </div>
         </div>
         <div className="button-left" onClick={() => this.toggle("left")}>
@@ -114,14 +105,17 @@ class Slider extends Component {
   }
 
   getNextSlideIdx = direction => {
+    console.log(this.state);
     const numberOfSlidesToRender = screenWidthToNumberOfSlides(
-      this.state.sliderWidth
+      this.props.sliderWidth
     );
     let nextIdx =
       direction === "left"
         ? this.state.currentSlide - numberOfSlidesToRender
         : this.state.currentSlide + numberOfSlidesToRender;
-    const last = this.state.numberOfSlides - numberOfSlidesToRender;
+
+    const last = this.props.numberOfSlides - numberOfSlidesToRender;
+
     if (nextIdx > last) {
       nextIdx = last;
     }
@@ -138,7 +132,7 @@ class Slider extends Component {
   };
 
   render() {
-    return <div ref={this.sliderRef}>{this.renderCards()}</div>;
+    return <React.Fragment>{this.renderCards()}</React.Fragment>;
   }
 }
 

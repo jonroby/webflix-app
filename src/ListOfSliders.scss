@@ -1,0 +1,9 @@
+.list-of-sliders {
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+.list-of-slider {
+    position: relative;
+}
