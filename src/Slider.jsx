@@ -2,8 +2,7 @@
 
 import React, { Component } from "react";
 import Card from "./Card";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-
+import { ChevronLeft, ChevronRight } from "./Chevron";
 import "./Slider.scss";
 
 const screenWidthToNumberOfSlides = width => {
@@ -48,7 +47,7 @@ class Slider extends Component {
 
   renderCards() {
     const numOfSlides = screenWidthToNumberOfSlides(this.props.sliderWidth);
-    console.log("numOfSlides ", numOfSlides);
+
     let width = this.props.sliderWidth * (1 / numOfSlides);
 
     const hMultiplier = 1.35;
@@ -95,10 +94,10 @@ class Slider extends Component {
           </div>
         </div>
         <div className="button-left" onClick={() => this.toggle("left")}>
-          <FaChevronLeft />
+          <ChevronLeft />
         </div>
         <div className="button-right" onClick={() => this.toggle("right")}>
-          <FaChevronRight />
+          <ChevronRight />
         </div>
       </div>
     );

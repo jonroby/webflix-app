@@ -67,7 +67,7 @@ class ListOfSliders extends Component {
       this.fetchList(k);
     });
 
-    window.addEventListener("resize", this.sliderWidth(this.listOfSlidersRef));
+    window.addEventListener("resize", this.sliderWidth);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -76,12 +76,20 @@ class ListOfSliders extends Component {
       prevState.lists.get("Popular").length !==
       this.state.lists.get("Popular").length
     ) {
-      this.sliderWidth(this.listOfSlidersRef)(); // Initial
+      this.sliderWidth(); // Initial
     }
   }
 
-  sliderWidth = slider => () => {
+  componentWillUnmount() {
+    console.log("removing");
+    window.removeEventListener("resize", this.sliderWidth);
+  }
+
+  sliderWidth = () => {
     // Check width here
+    const slider = this.listOfSlidersRef;
+    console.log("here ");
+    if (!slider.current) return;
     const sidesWidth = 120;
     const sliderWidth = slider.current.offsetWidth - sidesWidth;
     this.setState({ sliderWidth });
@@ -109,6 +117,7 @@ class ListOfSliders extends Component {
             </div>
           );
         }).filter(i => i)}
+        <div className="buffer" />
       </div>
     );
   }
