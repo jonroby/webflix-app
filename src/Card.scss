@@ -38,10 +38,13 @@
   font-weight: 500;
   /* color: #515151; */
   /* color: $primary-color */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .card-details-data {
-    display: flex;
+  display: flex;
   font-size: 14px;
   color: #767676;
 }

@@ -1,0 +1,30 @@
+.slider-outer {
+    position: absolute;
+    transition: left .7s;
+    overflow: hidden;
+    // width: 1200px;
+}
+
+.slider-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+
+.slider-container > div {
+    padding-left: 5px;
+    padding-right: 5px;
+    transition: width .35s
+}
+
+// .button-left {
+//     position: absolute;
+//     top: 0;
+// }
+
+// .button-right {
+//     position: absolute;
+//     // top: 0;
+//     right: 0
+// }
