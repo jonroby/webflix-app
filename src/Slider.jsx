@@ -60,51 +60,77 @@ class Slider extends Component {
     }
 
     const transition = this.state.hoverIdx !== null ? "left .35s" : "left .75s";
+
+    const first = this.state.currentSlide;
+    const remaining = this.props.numberOfSlides - this.state.currentSlide;
+
+    const firstSplits = Math.ceil(first / numOfSlides);
+    const remainingSplits = Math.ceil(remaining / numOfSlides);
+    const total = firstSplits + remainingSplits;
+
+    const activeBlock = Math.ceil(this.state.currentSlide / numOfSlides);
+
     return (
-      <div
-        className="outer-outer"
-        style={{
-          width: window.innerWidth,
-          height: width * 0.8
-        }}
-      >
-        <div
-          className="slider-outer"
-          style={{ left, transition, height: width * 0.8 }}
-        >
-          {/* <div className="hold"> */}
-          {/* <div className="slider-title">{this.props.title}</div> */}
-          <div className="slider-container">
-            {this.props.data.map((i, idx) => {
-              return (
-                <div
-                  onMouseEnter={this.mouseEnter(idx)}
-                  onMouseLeave={this.mouseLeave(idx)}
-                  style={{
-                    width:
-                      idx === this.state.hoverIdx ? width * hMultiplier : width,
-                    zIndex: idx === this.state.hoverIdx ? 1 : 0
-                  }}
-                >
-                  <Card data={i} />
-                </div>
-              );
-            })}
-            {/* </div> */}
+      <div className="slider-outer">
+        <div className="slider-top">
+          <div className="slider-title">{this.props.title}</div>
+          <div className="slider-blocks-container">
+            <div className="slider-blocks">
+              {new Array(total).fill(0).map((b, i) => (
+                <div className={i === activeBlock ? "active-block" : "block"} />
+              ))}
+            </div>
           </div>
         </div>
-        <div className="button-left" onClick={() => this.toggle("left")}>
-          <ChevronLeft />
-        </div>
-        <div className="button-right" onClick={() => this.toggle("right")}>
-          <ChevronRight />
+
+        <div
+          className="outer-outer"
+          style={{
+            width: window.innerWidth,
+            height: width * 0.8
+          }}
+        >
+          <div
+            className="slider-outer"
+            style={{ left, transition, height: width * 0.8 }}
+          >
+            <div className="slider-container">
+              {this.props.data.map((i, idx) => {
+                return (
+                  <div
+                    onMouseEnter={this.mouseEnter(idx)}
+                    onMouseLeave={this.mouseLeave(idx)}
+                    style={{
+                      width:
+                        idx === this.state.hoverIdx
+                          ? width * hMultiplier
+                          : width,
+                      zIndex: idx === this.state.hoverIdx ? 1 : 0
+                    }}
+                  >
+                    <Card data={i} />
+                  </div>
+                );
+              })}
+              {/* </div> */}
+            </div>
+          </div>
+          <div className="button-left" onClick={() => this.toggle("left")}>
+            {this.state.currentSlide > 0 ? <ChevronLeft /> : null}
+          </div>
+          }
+          <div className="button-right" onClick={() => this.toggle("right")}>
+            {this.state.currentSlide + numOfSlides <
+            this.props.numberOfSlides ? (
+              <ChevronRight />
+            ) : null}
+          </div>
         </div>
       </div>
     );
   }
 
   getNextSlideIdx = direction => {
-    console.log(this.state);
     const numberOfSlidesToRender = screenWidthToNumberOfSlides(
       this.props.sliderWidth
     );

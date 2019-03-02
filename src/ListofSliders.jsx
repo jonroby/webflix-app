@@ -31,7 +31,7 @@ class ListOfSliders extends Component {
 
     // types can come from props
     const types = [
-      "Latest",
+      // "Latest",
       // "NowPlaying"
       "Popular"
       // "Top",
@@ -71,7 +71,6 @@ class ListOfSliders extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log("prevProps ", prevState);
     if (
       prevState.lists.get("Popular").length !==
       this.state.lists.get("Popular").length
@@ -81,16 +80,14 @@ class ListOfSliders extends Component {
   }
 
   componentWillUnmount() {
-    console.log("removing");
     window.removeEventListener("resize", this.sliderWidth);
   }
 
   sliderWidth = () => {
     // Check width here
     const slider = this.listOfSlidersRef;
-    console.log("here ");
     if (!slider.current) return;
-    const sidesWidth = 120;
+    const sidesWidth = 120; // 60px * 2 // 30px * 2
     const sliderWidth = slider.current.offsetWidth - sidesWidth;
     this.setState({ sliderWidth });
   };
@@ -104,17 +101,13 @@ class ListOfSliders extends Component {
         {Array.from(this.state.lists, ([k, v]) => {
           if (v.length <= 0) return null;
           return (
-            /* style={{ height: width * 1.5 * 0.796004 }} */
-            <div>
-              <div className="slider-title">{k}</div>
-              <Slider
-                title={k}
-                listOfSlidersRef={this.listOfSlidersRef}
-                sliderWidth={this.state.sliderWidth}
-                numberOfSlides={v.length}
-                data={v}
-              />
-            </div>
+            <Slider
+              title={k}
+              listOfSlidersRef={this.listOfSlidersRef}
+              sliderWidth={this.state.sliderWidth}
+              numberOfSlides={v.length}
+              data={v}
+            />
           );
         }).filter(i => i)}
         <div className="buffer" />
