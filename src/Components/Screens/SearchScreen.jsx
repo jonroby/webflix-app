@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import extractParameters from "./helpers/extractParameters";
-import Movies from "./Movies";
-import Search from "./Search";
+import extractParameters from "../helpers/extractParameters";
+import Movies from "../Movies";
+import Search from "../Search";
 
 import "./MoviesScreen.scss";
 

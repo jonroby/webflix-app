@@ -1,6 +1,6 @@
 import React from "react";
-import search from "./assets/searching-magnifying-glass.svg";
-import searchDark from "./assets/search-magnifying-glass-black.svg";
+import search from "../../assets/searching-magnifying-glass.svg";
+import searchDark from "../../assets/search-magnifying-glass-black.svg";
 
 import "./SearchIcon.scss";
 

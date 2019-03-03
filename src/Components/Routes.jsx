@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Navbar from "./Navbar";
-import HomeScreen from "./HomeScreen";
-import MoviesScreen from "./MoviesScreen";
-import SearchScreen from "./SearchScreen";
-import MovieScreen from "./MovieScreen";
-import GenresScreen from "./GenresScreen";
+import HomeScreen from "./Screens/HomeScreen";
+import MoviesScreen from "./Screens/MoviesScreen";
+import SearchScreen from "./Screens/SearchScreen";
+import MovieScreen from "./Screens/MovieScreen";
+import GenresScreen from "./Screens/GenresScreen";
 import NotFound from "./NotFound";
 
 import "./Routes.scss";

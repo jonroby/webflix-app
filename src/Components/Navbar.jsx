@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Search from "./Search";
-import SearchIcon from "./SearchIcon";
+import SearchIcon from "./Icons/SearchIcon";
 
 import "./Navbar.scss";
 

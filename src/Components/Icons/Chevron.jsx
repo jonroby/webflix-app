@@ -1,6 +1,6 @@
 import React from "react";
-import left from "./assets/left-chevron.svg";
-import right from "./assets/right-chevron.svg";
+import left from "../../assets/left-chevron.svg";
+import right from "../../assets/right-chevron.svg";
 
 import "./Chevron.scss";
 

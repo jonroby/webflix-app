@@ -1,8 +1,6 @@
-//2650
-
 import React, { Component } from "react";
 import Card from "./Card";
-import { ChevronLeft, ChevronRight } from "./Chevron";
+import { ChevronLeft, ChevronRight } from "./Icons/Chevron";
 import "./Slider.scss";
 
 const screenWidthToNumberOfSlides = width => {

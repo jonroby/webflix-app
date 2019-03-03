@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
-import ListOfSliders from "./ListofSliders";
-import formatFilmDuration from "./helpers/formatFilmDuration";
-import extractYear from "./helpers/extractYear";
+import ListOfSliders from "../ListOfSliders";
+import formatFilmDuration from "../../helpers/formatFilmDuration";
+import extractYear from "../../helpers/extractYear";
 
 import "./HomeScreen.scss";
 
