@@ -1,0 +1,17 @@
+.list-of-sliders {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.list-of-slider {
+  position: relative;
+}
+
+// .list-of-slider div:last-child {
+//     height: 500px;
+// }
+
+.buffer {
+    height: 100px;
+}

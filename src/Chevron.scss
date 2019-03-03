@@ -1,0 +1,10 @@
+.chevron {
+  cursor: pointer;
+  height: 30px;
+  transition: height 0.2s;
+}
+
+.chevron:hover {
+  height: 40px;
+  transition: height 0.2s;
+}
