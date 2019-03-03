@@ -1,14 +1,24 @@
 @import "src/styles/_colors.scss";
 
-.navbar-outer {
+.navbar-outer, .navbar-outer-home {
   position: fixed;
   padding-left: 20px;
   padding-right: 20px;
   height: 60px;
   width: 100%;
-  z-index: 1;
+  z-index: 10;
   background-color: white;
+  opacity: .98;
   box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.03);
+  transition: .75s;
+}
+
+.navbar-outer-home {
+    background-color: transparent;
+}
+
+.navbar-outer-home .navbar-logo {
+    color: $webflix-green;
 }
 
 .navbar-dummy {
@@ -30,8 +40,26 @@
   font-weight: 700;
 }
 
+.navbar-right {
+    color: $webflix-black;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-outer-home .navbar-right {
+    color: white;
+}
+
+.navbar-right img {
+    padding-top: 2px;
+}
+
+.navbar-right div {
+  padding-right: 10px;
+}
+
 @media only screen and (min-width: 978px) {
-  .navbar-outer {
+  .navbar-outer, .navbar-outer-home {
     padding-left: 60px;
     padding-right: 60px;
   }

@@ -13,6 +13,7 @@ class Search extends Component {
   }
 
   updateSearchInput = event => {
+    console.log("this.props ", this.props);
     this.setState({ searchInput: event.target.value }, () => {
       this.props.history.push(
         `/search/movies?search-term=${this.state.searchInput}`
@@ -21,6 +22,10 @@ class Search extends Component {
   };
 
   render() {
+    // const style =
+    //   this.props.location.pathname === "/"
+    //     ? "search-container-home"
+    //     : "search-container";
     return (
       <div className="search-container">
         <div className="search-input-container">
