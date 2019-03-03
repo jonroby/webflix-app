@@ -3,6 +3,7 @@ import throttle from "lodash.throttle";
 import debounce from "lodash.debounce";
 import axios from "axios";
 import Card, { CardTitle, CardContent } from "./Card";
+import MovieCard from "./MovieCard";
 import extractYear from "./helpers/extractYear";
 
 import "./Movies.scss";
@@ -78,21 +79,7 @@ class Movies extends Component {
       <div>
         <div className="movies-container">
           {[...this.state.results].map(r => (
-            <Card key={r.id} data={r}>
-              <CardTitle title={r}>{r.title}</CardTitle>
-              <CardContent title={r}>
-                <div
-                  className={`${
-                    r.vote_average > 5.5 ? "good-movie" : "bad-movie"
-                  }`}
-                >
-                  {r.vote_average}
-                </div>
-                <div className="card-details-release-date">
-                  {extractYear(r.release_date)}
-                </div>
-              </CardContent>
-            </Card>
+            <MovieCard key={r.id} data={r} />
           ))}
         </div>
         {this.state.page >= this.state.totalPages ? (
