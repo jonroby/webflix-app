@@ -2,8 +2,8 @@ import React, { Component, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Movies from "../Movies";
-import extractYear from "../../helpers/extractYear";
-import formatFilmDuration from "../../helpers/formatFilmDuration";
+import extractYear from "../helpers/extractYear";
+import formatFilmDuration from "../helpers/formatFilmDuration";
 
 import "./MovieScreen.scss";
 
