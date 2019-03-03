@@ -96,22 +96,24 @@ class ListOfSliders extends Component {
     let width = this.state.sliderWidth * (1 / numOfSlides);
     return (
       <div className="list-of-sliders" ref={this.listOfSlidersRef}>
-        {Object.keys(this.props.sliders)
-          .map(k => {
-            if (this.props.sliders[k].length <= 0) return null;
-            return (
-              <div style={{ height: width * 0.8 * 1.5 }}>
-                <Slider
-                  title={k}
-                  listOfSlidersRef={this.listOfSlidersRef}
-                  sliderWidth={this.state.sliderWidth}
-                  numberOfSlides={this.props.sliders[k].length}
-                  data={this.props.sliders[k]}
-                />
-              </div>
-            );
-          })
-          .filter(i => i)}
+        {this.props.children}
+        {/* Move this to Slider??? */}
+        {/* {Object.keys(this.props.sliders) */}
+        {/*   .map(k => { */}
+        {/*     if (this.props.sliders[k].length <= 0) return null; */}
+        {/*     return ( */}
+        {/*       <div style={{ height: width * 0.8 * 1.5 }}> */}
+        {/*         <Slider */}
+        {/*           title={k} */}
+        {/*           listOfSlidersRef={this.listOfSlidersRef} */}
+        {/*           sliderWidth={this.state.sliderWidth} */}
+        {/*           numberOfSlides={this.props.sliders[k].length} */}
+        {/*           data={this.props.sliders[k]} */}
+        {/*         /> */}
+        {/*       </div> */}
+        {/*     ); */}
+        {/*   }) */}
+        {/*   .filter(i => i)} */}
         <div className="buffer" />
       </div>
     );

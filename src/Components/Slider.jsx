@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import Card from "./Card";
+import MovieCard from "./MovieCard";
 import { ChevronLeft, ChevronRight } from "./Icons/Chevron";
+
 import "./Slider.scss";
 
 const screenWidthToNumberOfSlides = width => {
@@ -29,8 +30,13 @@ class Slider extends Component {
     super(props);
     this.state = {
       currentSlide: 0,
-      hoverIdx: null
+      hoverIdx: null,
+      sliderWidth: 1, // Change this name to visibleSlidersLength
+      // numberOfSlides: 0,
+      height: 100
     };
+
+    this.listOfSlidersRef = React.createRef();
   }
 
   mouseEnter = idx => event => {
@@ -43,10 +49,38 @@ class Slider extends Component {
     this.setState({ hoverIdx: null });
   };
 
-  renderCards() {
-    const numOfSlides = screenWidthToNumberOfSlides(this.props.sliderWidth);
+  setSliderWidth = () => {
+    // Check width here
+    const slider = this.listOfSlidersRef;
+    if (!slider.current) return;
+    const sidesWidth = 120; // 60px * 2 // 30px * 2
+    const sliderWidth = slider.current.offsetWidth - sidesWidth;
+    this.setState({ sliderWidth });
+  };
 
-    let width = this.props.sliderWidth * (1 / numOfSlides);
+  componentDidMount() {
+    // loop or promise.all or only do top with webpack?
+    // Array.from(this.state.lists, ([k]) => {
+    //   this.fetchList(k);
+    // });
+
+    window.addEventListener("resize", this.setSliderWidth);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.children.length !== this.props.children.length) {
+      this.setSliderWidth(); // Initial
+    }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.sliderWidth);
+  }
+
+  renderCards() {
+    const numOfSlides = screenWidthToNumberOfSlides(this.state.sliderWidth);
+
+    let width = this.state.sliderWidth * (1 / numOfSlides);
 
     const hMultiplier = 1.35;
     let left = -(this.state.currentSlide * width);
@@ -60,7 +94,7 @@ class Slider extends Component {
     const transition = this.state.hoverIdx !== null ? "left .35s" : "left .75s";
 
     const first = this.state.currentSlide;
-    const remaining = this.props.numberOfSlides - this.state.currentSlide;
+    const remaining = this.props.children.length - this.state.currentSlide;
 
     const firstSplits = Math.ceil(first / numOfSlides);
     const remainingSplits = Math.ceil(remaining / numOfSlides);
@@ -93,7 +127,7 @@ class Slider extends Component {
             style={{ left, transition, height: width * 0.8 }}
           >
             <div className="slider-container">
-              {this.props.data.map((i, idx) => {
+              {this.props.children.map((i, idx) => {
                 return (
                   <div
                     onMouseEnter={this.mouseEnter(idx)}
@@ -106,20 +140,19 @@ class Slider extends Component {
                       zIndex: idx === this.state.hoverIdx ? 1 : 0
                     }}
                   >
-                    <Card data={i} />
+                    {i}
                   </div>
                 );
               })}
-              {/* </div> */}
             </div>
           </div>
           <div className="button-left" onClick={() => this.toggle("left")}>
             {this.state.currentSlide > 0 ? <ChevronLeft /> : null}
           </div>
-          }
+
           <div className="button-right" onClick={() => this.toggle("right")}>
             {this.state.currentSlide + numOfSlides <
-            this.props.numberOfSlides ? (
+            this.props.children.length ? (
               <ChevronRight />
             ) : null}
           </div>
@@ -130,14 +163,14 @@ class Slider extends Component {
 
   getNextSlideIdx = direction => {
     const numberOfSlidesToRender = screenWidthToNumberOfSlides(
-      this.props.sliderWidth
+      this.state.sliderWidth
     );
     let nextIdx =
       direction === "left"
         ? this.state.currentSlide - numberOfSlidesToRender
         : this.state.currentSlide + numberOfSlidesToRender;
 
-    const last = this.props.numberOfSlides - numberOfSlidesToRender;
+    const last = this.props.children.length - numberOfSlidesToRender;
 
     if (nextIdx > last) {
       nextIdx = last;
@@ -155,7 +188,13 @@ class Slider extends Component {
   };
 
   render() {
-    return <React.Fragment>{this.renderCards()}</React.Fragment>;
+    const numOfSlides = screenWidthToNumberOfSlides(this.state.sliderWidth);
+    let width = this.state.sliderWidth * (1 / numOfSlides);
+    return (
+      <div style={{ height: width * 0.8 * 1.35 }} ref={this.listOfSlidersRef}>
+        {this.renderCards()}
+      </div>
+    );
   }
 }
 

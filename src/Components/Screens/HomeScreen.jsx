@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import ListOfSliders from "../ListOfSliders";
+import Slider from "../Slider";
+import MovieCard from "../MovieCard";
 import formatFilmDuration from "../helpers/formatFilmDuration";
 import extractYear from "../helpers/extractYear";
 
@@ -90,7 +92,7 @@ class HomeScreen extends Component {
           <div className="movie-screen-movie">
             <div className="image-container">
               <img
-                src={`https://image.tmdb.org/t/p/w1000_and_h563_face/${
+                src={`https:image.tmdb.org/t/p/w1000_and_h563_face/${
                   movie.backdrop_path
                 }`}
               />
@@ -131,7 +133,45 @@ class HomeScreen extends Component {
           </div>
         </div>
 
-        <ListOfSliders sliders={this.state.sliders} />
+        {Object.keys(this.state.sliders).map(s => (
+          <Slider title={s}>
+            {this.state.sliders[s].map(movie => (
+              <MovieCard data={movie} />
+            ))}
+          </Slider>
+        ))}
+
+        {/* <ListOfSliders sliders={this.state.sliders}> */}
+        {/*   {Object.keys(this.state.sliders) */}
+        {/*     .map(k => { */}
+        {/*       /\* console.log("this.props.sliders ", this.props.sliders); *\/ */}
+
+        {/*       if (this.state.sliders[k].length <= 0) return null; */}
+        {/*       console.log("this.state.sliders[k] ", this.state.sliders[k]); */}
+        {/*       return ( */}
+        {/*         <div> */}
+        {/*           {/\* <Slider *\/} */}
+        {/*           {/\*   title={k} *\/} */}
+        {/*           {/\*   listOfSlidersRef={this.listOfSlidersRef} *\/} */}
+        {/*           {/\*   sliderWidth={this.state.sliderWidth} *\/} */}
+        {/*           {/\*   numberOfSlides={this.props.sliders[k].length} *\/} */}
+        {/*           {/\*   data={this.props.sliders[k]} *\/} */}
+        {/*           {/\* /> *\/} */}
+        {/*         </div> */}
+        {/*       ); */}
+        {/*     }) */}
+        {/*     .filter(i => i)} */}
+
+        {/*   {/\* {Object.keys(this.state.sliders).map(s => { *\/} */}
+        {/*   {/\*   return ( *\/} */}
+        {/*   {/\*     <Slider> *\/} */}
+        {/*   {/\*       {this.state.sliders[s].map(movie => ( *\/} */}
+        {/*   {/\*         <MovieCard data={movie} /> *\/} */}
+        {/*   {/\*       ))} *\/} */}
+        {/*   {/\*     </Slider> *\/} */}
+        {/*   {/\*   ); *\/} */}
+        {/*   {/\* })} *\/} */}
+        {/* </ListOfSliders> */}
       </div>
     );
   }
