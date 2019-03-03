@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import ListofSliders from "./ListOfSliders";
+import ListOfSliders from "./ListofSliders";
 import formatFilmDuration from "./helpers/formatFilmDuration";
 import extractYear from "./helpers/extractYear";
 
