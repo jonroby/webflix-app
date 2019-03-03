@@ -1,32 +1,27 @@
 @import "styles/_colors.scss";
 
 .card {
-  width: 100%;
 }
 
 .card:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .card-image-container {
   width: 100%;
   position: relative;
-  padding-top: 80%;
+  padding-top: 56.25%;
 }
 
-.card-image-container img {
+img {
   width: 100%;
   position: absolute;
   top: 0;
-  // left: 0;
-  // right: 0;
+  left: 0;
+  right: 0;
 }
 
 .card-details {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -39,8 +34,6 @@
 .card-details-title {
   font-size: 16px;
   font-weight: 500;
-  /* color: #515151; */
-  /* color: $primary-color */
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;

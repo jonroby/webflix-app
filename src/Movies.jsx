@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import throttle from "lodash.throttle";
 import debounce from "lodash.debounce";
 import axios from "axios";
-import Card from "./Card";
+import Card, { CardTitle, CardContent } from "./Card";
+import extractYear from "./helpers/extractYear";
 
 import "./Movies.scss";
 
@@ -10,6 +11,7 @@ class Movies extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      // ids (int) need to be checked - sets check for reference equality for objects
       results: new Set(),
       page: 0,
       totalPages: 0
@@ -62,7 +64,8 @@ class Movies extends Component {
 
   fetchMoreResults = async (url, page) => {
     const nextPage = page + 1;
-    const response = await axios.get(`${url}page=${nextPage}`);
+    // MAJOR POTENTIAL FOR BUGS ----------->
+    const response = await axios.get(`${url}?page=${nextPage}`);
     this.setState({
       results: new Set([...this.state.results].concat(response.data.results)),
       page: nextPage,
@@ -75,7 +78,21 @@ class Movies extends Component {
       <div>
         <div className="movies-container">
           {[...this.state.results].map(r => (
-            <Card key={r.id} data={r} />
+            <Card key={r.id} data={r}>
+              <CardTitle title={r}>{r.title}</CardTitle>
+              <CardContent title={r}>
+                <div
+                  className={`${
+                    r.vote_average > 5.5 ? "good-movie" : "bad-movie"
+                  }`}
+                >
+                  {r.vote_average}
+                </div>
+                <div className="card-details-release-date">
+                  {extractYear(r.release_date)}
+                </div>
+              </CardContent>
+            </Card>
           ))}
         </div>
         {this.state.page >= this.state.totalPages ? (
