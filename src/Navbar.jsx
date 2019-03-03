@@ -35,9 +35,17 @@ class Navbar extends Component {
     return (
       <div className={style}>
         <div className="navbar-inner">
-          <Link to={`/`}>
-            <div className="navbar-logo">WEBFLIX</div>
-          </Link>
+          <div className="navbar-left">
+            <Link to={`/`}>
+              <div className="navbar-logo">WEBFLIX</div>
+            </Link>
+            <Link to={`/genres`}>
+              <div className="navbar-links">Genres</div>
+            </Link>
+            <Link to={`/people`}>
+              <div className="navbar-links">People</div>
+            </Link>
+          </div>
           <Link to="/search/movies">
             <div className="navbar-right">
               <SearchIcon theme={searchIconColor} />

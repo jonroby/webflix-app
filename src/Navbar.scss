@@ -40,6 +40,15 @@
   font-weight: 700;
 }
 
+.navbar-left {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-links {
+    padding-left: 30px;
+}
+
 .navbar-right {
     color: $webflix-black;
     display: flex;

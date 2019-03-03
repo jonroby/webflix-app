@@ -8,7 +8,7 @@ import formatFilmDuration from "./helpers/formatFilmDuration";
 
 import "./MovieScreen.scss";
 
-const rootApiUrl = "https://webflix-server.herokuapp.com";
+const rootApiUrl = "https:webflix-server.herokuapp.com";
 
 const MovieScreen = props => {
   const [movie, setMovie] = useState([]);
@@ -63,12 +63,15 @@ const MovieScreen = props => {
             </div>
             <div className="list-data">
               <span className="label">Genres: </span>{" "}
-              {movie.genres && movie.genres.map(l => <div>{l.name}</div>)}
+              {movie.genres &&
+                movie.genres.map(l => (
+                  <Link to={`/genres/${l.id}`}>{l.name}</Link>
+                ))}
             </div>
 
             <div className="list-data">
               <span className="label">Languages: </span>
-              {movie.genres &&
+              {movie.spoken_languages &&
                 movie.spoken_languages.map(l => <div>{l.name}</div>)}
             </div>
           </div>

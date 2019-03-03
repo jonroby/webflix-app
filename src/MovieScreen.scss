@@ -99,13 +99,17 @@
   flex-wrap: wrap;
 }
 
-.list-data > div {
+.list-data > div, a {
   padding-right: 5px;
 }
 
 .label {
   color: #999;
   padding-right: 5px;
+}
+
+.list-data a {
+    color: white;
 }
 
 @media only screen and (max-width: 978px) {

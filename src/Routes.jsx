@@ -5,6 +5,7 @@ import HomeScreen from "./HomeScreen";
 import MoviesScreen from "./MoviesScreen";
 import SearchScreen from "./SearchScreen";
 import MovieScreen from "./MovieScreen";
+import GenresScreen from "./GenresScreen";
 import NotFound from "./NotFound";
 
 import "./Routes.scss";
@@ -24,6 +25,10 @@ class Routes extends Component {
                 component={MoviesScreen}
               />
               <Route path="/movies/:id" component={MovieScreen} />
+              <Route path="/genres/:id" component={GenresScreen} />
+              {/* <Route path="/genres" component={GenresScreen} /> */}
+              {/* <Route path="/people" component={GenresScreen} /> */}
+
               <Route component={NotFound} />
             </Switch>
           </div>
