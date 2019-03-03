@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import extractParameters from "../helpers/extractParameters";
+import extractParameters from "./helpers/extractParameters";
 import { FaSearch as SearchIcon } from "react-icons/fa";
 
 import "./Search.scss";
