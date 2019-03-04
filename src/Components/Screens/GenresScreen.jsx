@@ -14,11 +14,9 @@ class GenresScreen extends Component {
   state = {};
 
   componentDidMount() {
-    Object.keys(genresIdToName)
-      .slice(17)
-      .forEach(k => {
-        this.fetchList(`${path}/${k}`, k);
-      });
+    Object.keys(genresIdToName).forEach(k => {
+      this.fetchList(`${path}/${k}`, k);
+    });
   }
 
   fetchList = async (path, key) => {
