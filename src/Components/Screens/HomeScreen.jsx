@@ -3,6 +3,7 @@ import axios from "axios";
 import ListOfSliders from "../ListOfSliders";
 import Slider from "../Slider";
 import MovieCard from "../MovieCard";
+import PersonCard from "../PersonCard";
 import formatFilmDuration from "../helpers/formatFilmDuration";
 import extractYear from "../helpers/extractYear";
 
@@ -68,12 +69,12 @@ class HomeScreen extends Component {
   fetch = async (path, key) => {
     const url = `${rootApiUrl}${path}`;
     const response = await axios.get(`${url}`);
-    console.log("response ", response.data);
     this.setState({ [key]: response.data });
   };
 
   fetchList = async (path, key) => {
     const url = `${rootApiUrl}${path}`;
+    console.log("url ", url);
     const response = await axios.get(`${url}`);
     const newLists = { ...this.state.sliders, [key]: response.data.results };
     this.setState({
@@ -84,6 +85,7 @@ class HomeScreen extends Component {
   render() {
     const { latest: movie } = this.state;
     if (!this.state.latest) return null;
+    console.log("this.state ", this.state);
     return (
       <div className="home-screen">
         <div className="movie-screen-container">
@@ -140,38 +142,6 @@ class HomeScreen extends Component {
             ))}
           </Slider>
         ))}
-
-        {/* <ListOfSliders sliders={this.state.sliders}> */}
-        {/*   {Object.keys(this.state.sliders) */}
-        {/*     .map(k => { */}
-        {/*       /\* console.log("this.props.sliders ", this.props.sliders); *\/ */}
-
-        {/*       if (this.state.sliders[k].length <= 0) return null; */}
-        {/*       console.log("this.state.sliders[k] ", this.state.sliders[k]); */}
-        {/*       return ( */}
-        {/*         <div> */}
-        {/*           {/\* <Slider *\/} */}
-        {/*           {/\*   title={k} *\/} */}
-        {/*           {/\*   listOfSlidersRef={this.listOfSlidersRef} *\/} */}
-        {/*           {/\*   sliderWidth={this.state.sliderWidth} *\/} */}
-        {/*           {/\*   numberOfSlides={this.props.sliders[k].length} *\/} */}
-        {/*           {/\*   data={this.props.sliders[k]} *\/} */}
-        {/*           {/\* /> *\/} */}
-        {/*         </div> */}
-        {/*       ); */}
-        {/*     }) */}
-        {/*     .filter(i => i)} */}
-
-        {/*   {/\* {Object.keys(this.state.sliders).map(s => { *\/} */}
-        {/*   {/\*   return ( *\/} */}
-        {/*   {/\*     <Slider> *\/} */}
-        {/*   {/\*       {this.state.sliders[s].map(movie => ( *\/} */}
-        {/*   {/\*         <MovieCard data={movie} /> *\/} */}
-        {/*   {/\*       ))} *\/} */}
-        {/*   {/\*     </Slider> *\/} */}
-        {/*   {/\*   ); *\/} */}
-        {/*   {/\* })} *\/} */}
-        {/* </ListOfSliders> */}
       </div>
     );
   }

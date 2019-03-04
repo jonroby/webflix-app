@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import MovieCard from "./MovieCard";
 import { ChevronLeft, ChevronRight } from "./Icons/Chevron";
 
@@ -105,7 +106,9 @@ class Slider extends Component {
     return (
       <div className="slider-outer">
         <div className="slider-top">
-          <div className="slider-title">{this.props.title}</div>
+          <Link to={this.props.titleLink || ""}>
+            <div className="slider-title">{this.props.title}</div>
+          </Link>
           <div className="slider-blocks-container">
             <div className="slider-blocks">
               {new Array(total).fill(0).map((b, i) => (

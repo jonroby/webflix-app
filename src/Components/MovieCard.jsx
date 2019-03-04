@@ -6,7 +6,7 @@ import "./Card.scss";
 
 const MovieCard = ({ data }) => {
   return (
-    <Card key={data.id} data={data}>
+    <Card key={data.id} data={data} image={data.poster_path}>
       <CardTitle>{data.title}</CardTitle>
       <CardContent>
         <div
