@@ -4,7 +4,7 @@ import Movies from "../Movies";
 
 import "./MoviesScreen.scss";
 
-const rootApiUrl = "https:webflix-server.herokuapp.com";
+const rootApiUrl = "https://webflix-server.herokuapp.com";
 // const rootApiUrl = "http://localhost:4000";
 
 class MoviesScreen extends Component {

@@ -15,7 +15,7 @@ class Navbar extends Component {
   }
 
   componentWillUnmount() {
-    window.removeAddListener("scroll", this.scrolledDown);
+    window.removeEventListener("scroll", this.scrolledDown);
   }
 
   scrolledDown = () => {

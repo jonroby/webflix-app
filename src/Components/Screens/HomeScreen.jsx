@@ -74,7 +74,6 @@ class HomeScreen extends Component {
 
   fetchList = async (path, key) => {
     const url = `${rootApiUrl}${path}`;
-    console.log("url ", url);
     const response = await axios.get(`${url}`);
     const newLists = { ...this.state.sliders, [key]: response.data.results };
     this.setState({
