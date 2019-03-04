@@ -7,7 +7,7 @@ import "./MoviesScreen.scss";
 const rootApiUrl = "https:webflix-server.herokuapp.com";
 // const rootApiUrl = "http://localhost:4000";
 
-class MovieScreen extends Component {
+class MoviesScreen extends Component {
   render() {
     const pathname = this.props.location.pathname;
     const url = `${rootApiUrl}${pathname}`;
@@ -22,4 +22,4 @@ class MovieScreen extends Component {
   }
 }
 
-export default MovieScreen;
+export default MoviesScreen;

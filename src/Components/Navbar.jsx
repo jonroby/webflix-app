@@ -42,7 +42,7 @@ class Navbar extends Component {
             <Link to={`/genres`}>
               <div className="navbar-links">Genres</div>
             </Link>
-            <Link to={`/people`}>
+            <Link to={`/persons`}>
               <div className="navbar-links">People</div>
             </Link>
           </div>

@@ -14,22 +14,16 @@ class GenresScreen extends Component {
   state = {};
 
   componentDidMount() {
-    console.log("genreIdsToName ", genresIdToName);
     Object.keys(genresIdToName)
       .slice(17)
       .forEach(k => {
-        console.log("here ");
         this.fetchList(`${path}/${k}`, k);
-        // console.log("response ", response);
-        // this.setState({ [k]: response.data.results });
       });
   }
 
   fetchList = async (path, key) => {
     const url = `${rootApiUrl}${path}`;
-    console.log("url ", url);
     const response = await axios.get(`${url}`);
-    console.log("response ", response);
     const name = genresIdToName[key];
     this.setState({
       [name]: [key, response.data.results]

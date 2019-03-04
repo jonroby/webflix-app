@@ -6,7 +6,7 @@ import "./Card.scss";
 
 const PersonCard = ({ data }) => {
   return (
-    <Card key={data.id} data={data} image={data.profile_path}>
+    <Card key={data.id} data={data} image={data.profile_path} type={"persons"}>
       <CardTitle>{data.name}</CardTitle>
       <CardContent>
         <div className={`${data.popularity > 50 ? "good-movie" : "bad-movie"}`}>

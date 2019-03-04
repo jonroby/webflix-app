@@ -20,7 +20,7 @@ const CardContent = props => (
 
 const Card = props => {
   return (
-    <Link to={`/movies/${props.data.id}`}>
+    <Link to={`/${props.type}/${props.data.id}`}>
       <div className="card">
         <CardImage image={props.image} />
         <div className="card-details">{props.children}</div>

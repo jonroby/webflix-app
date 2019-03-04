@@ -60,11 +60,6 @@ class Slider extends Component {
   };
 
   componentDidMount() {
-    // loop or promise.all or only do top with webpack?
-    // Array.from(this.state.lists, ([k]) => {
-    //   this.fetchList(k);
-    // });
-
     window.addEventListener("resize", this.setSliderWidth);
   }
 
