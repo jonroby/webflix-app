@@ -14,7 +14,7 @@ class SearchScreen extends Component {
     return (
       <div className="movies-screen">
         <Search {...this.props} />
-        <h3>Search Results</h3>
+
         <Movies url={url} location={this.props.location} />
       </div>
     );

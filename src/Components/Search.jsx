@@ -22,20 +22,14 @@ class Search extends Component {
   };
 
   render() {
-    // const style =
-    //   this.props.location.pathname === "/"
-    //     ? "search-container-home"
-    //     : "search-container";
     return (
       <div className="search-container">
         <div className="search-input-container">
-          <div className="search-icon">
-            <SearchIcon color={"#586069"} />
-          </div>
           <input
             className="search-input"
             onChange={this.updateSearchInput}
             value={this.state.searchInput}
+            placeholder={"Search"}
           />
         </div>
       </div>

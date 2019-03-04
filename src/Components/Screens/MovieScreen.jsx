@@ -33,6 +33,7 @@ const MovieScreen = props => {
         <div className="movie-screen-movie">
           <div className="image-container">
             <img
+              className="results-image"
               src={`https://image.tmdb.org/t/p/w1000_and_h563_face/${
                 movie.backdrop_path
               }`}
