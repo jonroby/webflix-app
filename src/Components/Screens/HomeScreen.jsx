@@ -85,7 +85,6 @@ class HomeScreen extends Component {
   render() {
     const { latest: movie } = this.state;
     if (!this.state.latest) return null;
-    console.log("this.state ", this.state);
     return (
       <div className="home-screen">
         <div className="movie-screen-container">

@@ -101,63 +101,65 @@ class Slider extends Component {
 
     return (
       <div className="slider-outer">
-        <div className="slider-top">
-          <Link to={this.props.titleLink || ""}>
-            <div className="slider-title">{this.props.title}</div>
-          </Link>
-          <div className="slider-blocks-container">
-            <div className="slider-blocks">
-              {new Array(total).fill(0).map((b, i) => (
-                <div
-                  key={i}
-                  className={i === activeBlock ? "active-block" : "block"}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div
-          className="outer-outer"
-          style={{
-            width: window.innerWidth,
-            height: width * 0.8
-          }}
-        >
-          <div
-            className="slider-outer"
-            style={{ left, transition, height: width * 0.8 }}
-          >
-            <div className="slider-container">
-              {this.props.children.map((i, idx) => {
-                return (
-                  <div
-                    key={i.props.data.id}
-                    onMouseEnter={this.mouseEnter(idx)}
-                    onMouseLeave={this.mouseLeave(idx)}
-                    style={{
-                      width:
-                        idx === this.state.hoverIdx
-                          ? width * hMultiplier
-                          : width,
-                      zIndex: idx === this.state.hoverIdx ? 1 : 0
-                    }}
-                  >
-                    {i}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+        <div className="button-container">
           <div className="button-left" onClick={() => this.toggle("left")}>
             {this.state.currentSlide > 0 ? <ChevronLeft /> : null}
           </div>
-
           <div className="button-right" onClick={() => this.toggle("right")}>
             {this.state.currentSlide + numOfSlides <
             this.props.children.length ? (
               <ChevronRight />
             ) : null}
+          </div>
+
+          <div className="slider-top">
+            <Link to={this.props.titleLink || ""}>
+              <div className="slider-title">{this.props.title}</div>
+            </Link>
+            <div className="slider-blocks-container">
+              <div className="slider-blocks">
+                {new Array(total).fill(0).map((b, i) => (
+                  <div
+                    key={i}
+                    className={i === activeBlock ? "active-block" : "block"}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div
+            className="outer-outer"
+            style={{
+              width: window.innerWidth,
+              height: width * 0.8
+            }}
+          >
+            <div
+              className="slider-outer"
+              style={{ left, transition, height: width * 0.8 }}
+            >
+              <div className="slider-container">
+                {this.props.children.map((i, idx) => {
+                  return (
+                    <div
+                      key={i.props.data.id}
+                      onMouseEnter={this.mouseEnter(idx)}
+                      onMouseLeave={this.mouseLeave(idx)}
+                      style={{
+                        width:
+                          idx === this.state.hoverIdx
+                            ? width * hMultiplier
+                            : width,
+                        zIndex: idx === this.state.hoverIdx ? 1 : 0
+                      }}
+                    >
+                      {i}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -194,7 +196,11 @@ class Slider extends Component {
     const numOfSlides = screenWidthToNumberOfSlides(this.state.sliderWidth);
     let width = this.state.sliderWidth * (1 / numOfSlides);
     return (
-      <div style={{ height: width * 0.8 * 1.35 }} ref={this.listOfSlidersRef}>
+      <div
+        className="no-overflow"
+        style={{ height: width * 0.8 * 1.5 }}
+        ref={this.listOfSlidersRef}
+      >
         {this.renderCards()}
       </div>
     );

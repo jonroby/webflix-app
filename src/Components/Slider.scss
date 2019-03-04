@@ -16,6 +16,16 @@
   color: rgb(10, 10, 10);
 }
 
+.button-container {
+    position: relative;
+    background-color: white;
+    // overflow: hidden;
+}
+
+.button-container:hover .button-left {
+    visibility: visible;
+}
+
 .slider-blocks-container {
     display: flex;
     flex-direction: column;
@@ -69,7 +79,7 @@
   // margin-bottom: 20px;
 }
 
-.outer-outer:hover .chevron {
+.slider-outer:hover .chevron {
   visibility: visible;
 }
 
@@ -105,8 +115,8 @@
   justify-content: center;
   width: 60px;
 
-  background-color: #fafafa;
-  opacity: 0.8;
+  background-color: white;
+  opacity: 0.9;
   width: 60px;
 }
 
