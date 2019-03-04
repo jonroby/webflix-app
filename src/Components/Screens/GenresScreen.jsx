@@ -35,11 +35,12 @@ class GenresScreen extends Component {
       <div>
         {Object.keys(this.state).map(name => (
           <Slider
+            key={name}
             title={changeCase.title(name)}
             titleLink={`genres/${this.state[name][0]}`}
           >
             {this.state[name][1].map(movie => (
-              <MovieCard data={movie} />
+              <MovieCard key={movie.id} data={movie} />
             ))}
           </Slider>
         ))}

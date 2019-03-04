@@ -61,6 +61,7 @@ class Slider extends Component {
 
   componentDidMount() {
     window.addEventListener("resize", this.setSliderWidth);
+    this.setSliderWidth(); // Initial
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -107,7 +108,10 @@ class Slider extends Component {
           <div className="slider-blocks-container">
             <div className="slider-blocks">
               {new Array(total).fill(0).map((b, i) => (
-                <div className={i === activeBlock ? "active-block" : "block"} />
+                <div
+                  key={i}
+                  className={i === activeBlock ? "active-block" : "block"}
+                />
               ))}
             </div>
           </div>
@@ -128,6 +132,7 @@ class Slider extends Component {
               {this.props.children.map((i, idx) => {
                 return (
                   <div
+                    key={i.props.data.id}
                     onMouseEnter={this.mouseEnter(idx)}
                     onMouseLeave={this.mouseLeave(idx)}
                     style={{

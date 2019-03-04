@@ -14,7 +14,7 @@ class Navbar extends Component {
     window.addEventListener("scroll", this.scrolledDown);
   }
 
-  componentDidUnmount() {
+  componentWillUnmount() {
     window.removeAddListener("scroll", this.scrolledDown);
   }
 
@@ -30,7 +30,6 @@ class Navbar extends Component {
 
     const searchIconColor =
       isHome && this.state.scrolledToTop ? "light" : "dark";
-    console.log("searchIconcolor ", searchIconColor);
 
     return (
       <div className={style}>

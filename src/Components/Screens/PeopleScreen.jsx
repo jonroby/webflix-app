@@ -26,7 +26,6 @@ class PeopleScreen extends Component {
   state = initializeState(map);
 
   componentDidMount() {
-    // Group these into the first two and then the rest
     Object.keys(this.state).forEach(stateKey => {
       this.fetchList(`${rootApiUrl}${path}${map[stateKey]}`, stateKey);
     });
